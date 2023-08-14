@@ -1,0 +1,21 @@
+import React, { useMemo } from 'react';
+import { View } from 'react-native';
+import EStyleSheet from 'react-native-extended-stylesheet';
+import { useTheme } from '@react-navigation/native';
+import { ThemeType } from '../../styles/theme';
+
+type {{pascalCase name}}PropsType = {};
+
+const {{pascalCase name}}: React.FC<{{pascalCase name}}PropsType> = ({}) => {
+  const theme = useTheme();
+  const styles = useMemo(() => getStyles(theme), [theme]);
+
+  return <View style={styles.container} />;
+};
+
+const getStyles = (theme: ThemeType) =>
+  EStyleSheet.create({
+    container: {},
+  });
+
+export default {{pascalCase name}};
