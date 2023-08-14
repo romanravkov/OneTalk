@@ -47,7 +47,7 @@ const Chat = ({}) => {
         dispatch(
             addAlert({
                 type: 'success',
-                text: 'Chat was successfully finished!',
+                text: 'Your chat session has been closed.\nWe hope you had a great conversation! 😊',
             }),
         );
     };
@@ -92,7 +92,7 @@ const Chat = ({}) => {
                             addAlert({
                                 type: 'warning',
                                 duration: 10000,
-                                text: 'Here should be reporting service, but it is not implemented yet 😔',
+                                text: 'Reporting service is pending implementation 😔',
                             }),
                         );
                         break;
@@ -158,11 +158,11 @@ const Chat = ({}) => {
             await ChatService.sendMessage(params.chatId, message);
             setMessage('');
         } catch (err) {
-            console.log('error', err);
+            console.log('[handleSendMessage ERROR]', err);
             dispatch(
                 addAlert({
                     type: 'error',
-                    text: '[handleSendMessage] Something went wrong',
+                    text: "Oops! Something went wrong on our end. We're working to fix it.",
                 }),
             );
         }
@@ -186,7 +186,7 @@ const Chat = ({}) => {
             dispatch(
                 addAlert({
                     type: 'warning',
-                    text: 'Chat was ended by your interlocutor!',
+                    text: "Your chat partner has ended the conversation. 👋\nFeel free to start a new chat whenever you're ready.",
                 }),
             );
         }

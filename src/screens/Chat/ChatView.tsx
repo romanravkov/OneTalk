@@ -59,7 +59,7 @@ const ChatView: React.FC<ChatViewPropsType> = props => {
                         <Icon
                             name="settings"
                             size={22}
-                            color={theme.colors.icon}
+                            color={theme.colors.text}
                         />
                     </TouchableOpacity>
                 }
@@ -68,7 +68,7 @@ const ChatView: React.FC<ChatViewPropsType> = props => {
                         <Icon
                             name="exclamation-circle"
                             size={22}
-                            color={theme.colors.gray4}
+                            color={theme.colors.icon}
                         />
                     </TouchableOpacity>
                 }

@@ -10,15 +10,19 @@ type OnboardingPropsType = {};
 const ONBOARDING_SLIDES = [
     {
         text: 'Tap "Start a search" to match with interesting partners.',
+        key: 'first',
     },
     {
         text: 'Chat freely, share media, all without revealing identities.',
+        key: 'second',
     },
     {
         text: 'Your privacy secured: no chat history is stored.',
+        key: 'third',
     },
     {
         text: 'End chats easily, no trace left. Start new connections anytime.',
+        key: 'fourth',
     },
 ];
 
@@ -56,7 +60,7 @@ const Onboarding: React.FC<OnboardingPropsType> = () => {
                 horizontal
                 showsHorizontalScrollIndicator={false}>
                 {ONBOARDING_SLIDES.map(el => (
-                    <View style={styles.onboardingSlide}>
+                    <View style={styles.onboardingSlide} key={el.key}>
                         <View style={styles.onboardingScreenWrapper} />
                         <View style={styles.onboardingDescriptionWrapper}>
                             <Text

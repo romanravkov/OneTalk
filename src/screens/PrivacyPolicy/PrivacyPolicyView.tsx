@@ -106,7 +106,7 @@ const PrivacyPolicyView: React.FC<PrivacyPolicyViewPropsType> = () => {
 
                 <Text {...descriptionTextProps}>
                     If you have any questions about our privacy policy, please
-                    contact us at support email.
+                    contact us at onetalksupport@gmail.com.
                 </Text>
             </ScrollView>
         </View>

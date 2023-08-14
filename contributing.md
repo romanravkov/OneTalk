@@ -15,7 +15,7 @@ There are several ways you can contribute to OneTalk:
 
 - **Bug Reports**: If you encounter a bug, please [open an issue](https://github.com/romanravkov/OneTalk/issues) and provide detailed information about the bug, including steps to reproduce it.
 - **Feature Requests**: If you have an idea for a new feature or improvement, [submit an issue](https://github.com/romanravkov/OneTalk/issues) with a clear description of your suggestion.
-- **Code Contributions**: If you're a developer, you can contribute code to the project. Fork the repository, make your changes in a separate branch, and then submit a pull request (PR) to the `master` branch.
+- **Code Contributions**: If you're a developer, you can contribute code to the project. Fork the repository, make your changes in a separate branch, and then submit a pull request (PR) to the `main` branch.
 - **Documentation**: Help us improve our documentation by fixing typos, clarifying explanations, or adding new content.
 
 ## Submitting a Pull Request
@@ -29,7 +29,7 @@ Follow these steps to submit a pull request:
 5. Test your changes thoroughly to make sure they work as expected.
 6. Commit your changes with descriptive commit messages.
 7. Push your changes to your forked repository: `git push origin feature-name`.
-8. Open a pull request against the `master` branch of the original repository.
+8. Open a pull request against the `main` branch of the original repository.
 9. Provide a clear and concise description of your changes in the PR description.
 
 ## Code of Conduct

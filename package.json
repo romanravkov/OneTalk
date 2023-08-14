@@ -1,6 +1,13 @@
 {
-  "name": "OneTalk",
-  "version": "0.0.1",
+  "name": "onetalk",
+  "version": "1.0.0",
+  "description": "Anonymous chat app with random matching and media sharing. Stay anonymous, stay connected!",
+  "author": "Roman Ravkov ravkovroma@gmail.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/romanravkov/OneTalk.git"
+  },
+  "license": "MIT",
   "private": true,
   "scripts": {
     "android": "react-native run-android",

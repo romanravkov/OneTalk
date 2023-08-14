@@ -16,7 +16,7 @@ const darkTheme = {
         notification: '#FD6150',
         // end of required for navigation
 
-        icon: '#e3e3e3',
+        icon: primary,
 
         block: '#202020',
 

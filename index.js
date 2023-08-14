@@ -10,18 +10,18 @@ import { enableScreens } from 'react-native-screens';
 import 'react-native-gesture-handler';
 
 if (Text.defaultProps == null) {
-  Text.defaultProps = {};
+    Text.defaultProps = {};
 }
 if (TextInput.defaultProps == null) {
-  TextInput.defaultProps = {};
+    TextInput.defaultProps = {};
 }
 Text.defaultProps.allowFontScaling = false;
 TextInput.defaultProps = {
-  ...(TextInput.defaultProps || {}),
-  allowFontScaling: false,
+    ...(TextInput.defaultProps || {}),
+    allowFontScaling: false,
 };
 TouchableOpacity.defaultProps = {
-  activeOpacity: 0.6,
+    activeOpacity: 0.6,
 };
 
 AppRegistry.registerComponent(appName, () => App);

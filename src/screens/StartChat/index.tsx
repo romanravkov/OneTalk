@@ -66,11 +66,11 @@ const StartChat = () => {
                 );
             }
         } catch (err) {
-            console.log(err);
+            console.log('[onStartSearch ERROR]', err);
             dispatch(
                 addAlert({
                     type: 'error',
-                    text: '[onStartSearch] Something went wrong',
+                    text: "Oops! Something went wrong on our end. We're working to fix it.",
                 }),
             );
         }
