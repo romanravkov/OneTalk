@@ -23,8 +23,9 @@ import useKeyboard from '@rnhooks/keyboard';
 type ChatViewPropsType = {
     data: MessageType[];
     chatData: ChatType;
-    message: string;
-    onChangeMessage: (value: string) => void;
+    inputValue: string;
+    onChangeInputValue: (value: string) => void;
+    onUpdateMessage: (newData: MessageType) => void;
     handleSendMessage: () => void;
     openPrivacyPolicy: () => void;
     openSettingsActions: () => void;
@@ -93,7 +94,11 @@ const ChatView: React.FC<ChatViewPropsType> = props => {
                     }
                     keyExtractor={item => item.id}
                     renderItem={({ item }) => (
-                        <Message {...item} chatId={props.chatData.id} />
+                        <Message
+                            {...item}
+                            chatId={props.chatData.id}
+                            onUpdateMessage={props.onUpdateMessage}
+                        />
                     )}
                 />
             </View>
@@ -108,8 +113,8 @@ const ChatView: React.FC<ChatViewPropsType> = props => {
                     />
                 </TouchableOpacity>
                 <Input
-                    onChange={props.onChangeMessage}
-                    value={props.message}
+                    onChange={props.onChangeInputValue}
+                    value={props.inputValue}
                     placeholder="Message"
                     containerStyle={globalStyles.flex1}
                 />

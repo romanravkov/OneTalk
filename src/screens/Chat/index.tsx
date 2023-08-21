@@ -20,14 +20,14 @@ const Chat = ({}) => {
 
     const dispatch = useDispatch();
     const { showActionSheetWithOptions } = useActionSheet();
-    const [message, setMessage] = useState<string>('');
+    const [inputValue, setInputValue] = useState<string>('');
     const [chatData, setChatData] = useState<ChatType | null>(null);
     const [data, setData] = useState<MessageType[]>([]);
 
     useEffect(() => {
         const unsubscribeMessagesSocket = ChatService.subscribeMessages(
             params.chatId,
-            handleMessagesSocket,
+            handleReceiveNewMessage,
             console.log,
         );
         const unsubscribeChatSocket = ChatService.subscribeChat(
@@ -41,8 +41,9 @@ const Chat = ({}) => {
         };
     }, []);
 
-    const finishChat = () => {
-        ChatService.finishChat(params.chatId);
+    const finishChat = async () => {
+        LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+        await ChatService.finishChat(params.chatId);
         navigation.replace('StartChat');
         dispatch(
             addAlert({
@@ -146,19 +147,33 @@ const Chat = ({}) => {
         );
     };
 
-    const onChangeMessage = (value: string) => {
-        setMessage(value);
+    const onChangeInputValue = (value: string) => {
+        setInputValue(value);
     };
 
     const handleSendMessage = async () => {
-        if (!message) {
+        if (!inputValue) {
             return;
         }
+
+        let newMessageData: MessageType;
+
         try {
-            await ChatService.sendMessage(params.chatId, message);
-            setMessage('');
+            setInputValue('');
+            await ChatService.sendMessage(
+                params.chatId,
+                inputValue,
+                newMessage => {
+                    newMessageData = newMessage;
+                    handleReceiveNewMessage({ ...newMessage, isPending: true });
+                },
+            );
         } catch (err) {
             console.log('[handleSendMessage ERROR]', err);
+            // @ts-ignore
+            if (newMessageData) {
+                onUpdateMessage({ ...newMessageData, error: true });
+            }
             dispatch(
                 addAlert({
                     type: 'error',
@@ -168,7 +183,20 @@ const Chat = ({}) => {
         }
     };
 
-    const handleMessagesSocket = (newMessage: MessageType) => {
+    const onUpdateMessage = (newData: MessageType) => {
+        LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+        setData(old => {
+            const messageIndex = old.findIndex(el => el.id === newData.id);
+            if (messageIndex !== -1) {
+                const dataCopy = [...old];
+                dataCopy[messageIndex] = newData;
+                return dataCopy;
+            }
+            return old;
+        });
+    };
+
+    const handleReceiveNewMessage = (newMessage: MessageType) => {
         LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
         setData(old =>
             old.every(el => el.id !== newMessage.id)
@@ -191,6 +219,7 @@ const Chat = ({}) => {
             );
         }
     };
+
     if (!chatData) {
         return null;
     }
@@ -198,8 +227,9 @@ const Chat = ({}) => {
         <ChatView
             data={data}
             chatData={chatData}
-            message={message}
-            onChangeMessage={onChangeMessage}
+            inputValue={inputValue}
+            onChangeInputValue={onChangeInputValue}
+            onUpdateMessage={onUpdateMessage}
             handleSendMessage={handleSendMessage}
             openPrivacyPolicy={openPrivacyPolicy}
             openSettingsActions={openSettingsActions}
